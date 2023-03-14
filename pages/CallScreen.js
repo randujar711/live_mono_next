@@ -130,7 +130,7 @@ function CallScreen(){
 
 
     return(
-        <div className={homescreenstyle}>
+        <div className={homescreenstyle.body}>
             <label className='user label'>{"Username: " + localUsername}</label>
             <label className='room label'>{"Room Id: " + roomName}</label>
             <video className='video' autoPlay muted playsInline ref={localVideoRef}/>
