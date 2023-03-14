@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 import socketio from "socket.io-client";
 import callscreenstyle from "../styles/CallScreen.module.css"
 
+
 function CallScreen(){
     const params = useParams();
     const localUsername = params.username;
@@ -130,11 +131,13 @@ function CallScreen(){
 
 
     return(
+
         <div className={callscreenstyle.body}>
             <label className={callscreenstyle.label}>{"Username: " + localUsername}</label>
             <label className={callscreenstyle.label}>{"Room Id: " + roomName}</label>
             <video className={callscreenstyle.video} autoPlay muted playsInline ref={localVideoRef}/>
             <video className={callscreenstyle.video} autoPlay muted playsInline ref={remoteVideoRef}/>
+
         </div>
     )
 }
