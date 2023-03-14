@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import socketio from "socket.io-client";
-import homescreenstyle from "../styles/CallScreen.module.css"
+import callscreenstyle from "../styles/CallScreen.module.css"
+
 
 function CallScreen(){
     const params = useParams();
@@ -130,11 +131,13 @@ function CallScreen(){
 
 
     return(
-        <div className={homescreenstyle.body}>
-            <label className='user label'>{"Username: " + localUsername}</label>
-            <label className='room label'>{"Room Id: " + roomName}</label>
-            <video className='video' autoPlay muted playsInline ref={localVideoRef}/>
-            <video className='video'autoPlay muted playsInline ref={remoteVideoRef}/>
+
+        <div className={callscreenstyle.body}>
+            <label className={callscreenstyle.label}>{"Username: " + localUsername}</label>
+            <label className={callscreenstyle.label}>{"Room Id: " + roomName}</label>
+            <video className={callscreenstyle.video} autoPlay muted playsInline ref={localVideoRef}/>
+            <video className={callscreenstyle.video} autoPlay muted playsInline ref={remoteVideoRef}/>
+
         </div>
     )
 }
