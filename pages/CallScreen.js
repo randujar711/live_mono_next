@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useRef, useEffect } from "react";
+import { useRouter } from "next/router";
 import socketio from "socket.io-client";
 import callscreenstyle from "../styles/CallScreen.module.css"
 
@@ -11,6 +12,18 @@ function CallScreen(){
     const localVideoRef = useRef(null);
     const remoteVideoRef = useRef(null);
 
+    const router = useRouter()
+    const {
+      query: {
+        room, 
+        username
+      }
+    } = router 
+
+    const props = {room, username}
+    console.log('room test', room)
+    console.log(props)
+
     const socket = socketio("http://localhost:9000", {
         autoConnect: false, 
     });
@@ -18,14 +31,14 @@ function CallScreen(){
 
     let pc; // For RTCPeerConnection Object
 
-    const sendData = (data) => {
+   const sendData = (data) => {
         socket.emit("data", {
         username: localUsername,
         room: roomName,
         data: data,
         });
-    };
-    //start Connection initiates the connection, getUserMedia is importtant to set the settings of it
+    }; 
+    // start Connection initiates the connection, getUserMedia is importtant to set the settings of it
     const startConnection = () => {
     navigator.mediaDevices
       .getUserMedia({
@@ -133,10 +146,11 @@ function CallScreen(){
     return(
 
         <div className={callscreenstyle.body}>
-            <label className={callscreenstyle.label}>{"Username: " + localUsername}</label>
-            <label className={callscreenstyle.label}>{"Room Id: " + roomName}</label>
+            <label className={callscreenstyle.label}>{"Username: " + props.username}</label>
+            <label className={callscreenstyle.label}>{"Room Id: " + props.room}</label>
             <video className={callscreenstyle.video} autoPlay muted playsInline ref={localVideoRef}/>
             <video className={callscreenstyle.video} autoPlay muted playsInline ref={remoteVideoRef}/>
+            <h1>{props.room}</h1>
 
         </div>
     )
