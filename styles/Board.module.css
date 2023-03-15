@@ -1,8 +1,10 @@
-.board { 
+.board {
   display: grid;
-  grid-template-columns: repeat(11,100px);
-  grid-template-rows: repeat(11,100px);
-  background-color: red;
-  height: 500px;
-  width: 500px;
+  grid-template-columns: 3fr 2fr 2fr 2fr 3fr;
+  grid-template-rows: 3fr 2fr 2fr 2fr 3fr;
+  box-sizing: border-box;
+}
+
+.tile:hover {
+  opacity: 80%;
 }
