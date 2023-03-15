@@ -1,12 +1,25 @@
 // import Link from 'next/link'
 import {useState} from 'react'
 import Link from 'next/link'
+import Router from 'next/router'
 
 
 function HomeScreen() {
     const [room, setRoom] = useState("")
     const [username, setUsername] = useState("")
 
+    const button = (e) => {
+        e.preventDefault()
+        setRoom('ryan') 
+        Router.push({
+            pathname:'/CallScreen',
+            query: {
+                room, 
+                username
+            },
+        })
+    }
+    
     return (
             <form method="post" action="">
                 <label for="username">Username</label>
@@ -21,10 +34,9 @@ function HomeScreen() {
                 title="room"
                 onInput={(e) => setRoom(e.target.value)}
             />
-
-            <Link href={`/test2`}>
+            <a onClick={button}>
                 <input type='submit' name='submit' value='Join Room' />
-            </Link>
+            </a>
             </form>
     )
 }
